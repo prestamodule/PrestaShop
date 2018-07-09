@@ -3906,6 +3906,11 @@ class CartCore extends ObjectModel
         }
 
         if (!isset(self::$_isVirtualCart[$this->id])) {
+            $products = $this->getProducts();
+            if (!count($products)) {
+                return false;
+            }
+
             $isVirtual = !$this->hasRealProducts();
 
             self::$_isVirtualCart[$this->id] = $isVirtual;
